@@ -1,0 +1,19 @@
+{
+  "name": "take0x-cmux-skills",
+  "owner": {
+    "name": "take0x"
+  },
+  "plugins": [
+    {
+      "name": "cmux-skills",
+      "source": {
+        "source": "github",
+        "repo": "take0x/cmux-skills"
+      },
+      "description": "Agent Skills for cmux: documentation lookup and pane reading for AI coding agents.",
+      "author": {
+        "name": "take0x"
+      }
+    }
+  ]
+}
