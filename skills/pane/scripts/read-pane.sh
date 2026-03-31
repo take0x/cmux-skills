@@ -24,7 +24,7 @@ fi
 
 if [ "$MODE" = "last" ]; then
   OUTPUT=$(cmux read-screen --surface "$SURFACE" --lines 100)
-  LAST=$(echo "$OUTPUT" | tail -r | awk 'BEGIN{found=0} /^(➜|❯|\$ |% |> |.*@.*[\$#%] |.*[\$#➜❯%>] )/{found++; if(found==1){next} if(found==2){print; exit}} {if(found>=1) print}' | tail -r)
+  LAST=$(echo "$OUTPUT" | tail -r | awk 'BEGIN{found=0} !/^==>/ && /^(➜|❯|\$ |% |> |.*@.*[\$#%] |.*[\$#➜❯%>] )/{found++; if(found==1){next} if(found==2){print; exit}} {if(found>=1) print}' | tail -r)
   if [ -n "$LAST" ]; then
     echo "$LAST"
   else
