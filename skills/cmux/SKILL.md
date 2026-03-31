@@ -1,7 +1,7 @@
 ---
 name: cmux
 description: "Use this skill when the user asks about cmux, mentions cmux terminal, asks about cmux configuration, keyboard shortcuts, custom commands, notifications, browser automation, the cmux API, cmux split panes, cmux vertical tabs, cmux workspaces, or Claude Code agent teams in cmux. Also use when the user asks about a native macOS terminal for AI coding agents built on Ghostty, or references cmux.com documentation."
-allowed-tools: [WebFetch]
+allowed-tools: [WebFetch, Bash]
 ---
 
 # cmux Documentation Skill
@@ -39,24 +39,41 @@ user's question:
 | Blog posts and news | https://cmux.com/blog |
 | General overview | https://cmux.com |
 
+## Source Selection
+
+Classify the user's question, then pick the information source:
+
+| Question type | Examples | Source |
+|---|---|---|
+| CLI usage, subcommands, flags, syntax | "how do I list panes?", "cmux browser commands", "what flags does new-workspace take?" | **Bash first**: run `cmux -h` or `cmux <subcommand> --help` |
+| API / scripting / automation | "how to automate cmux", "send keys to a pane via script" | **Bash first**, then WebFetch the API page if deeper context needed |
+| Concepts, config, GUI, shortcuts, teams | "keyboard shortcuts", "how workspaces work", "notification settings", "claude code teams" | **WebFetch** from the URL table above |
+| Ambiguous or broad | "tell me about cmux panes", "how do splits work?" | **Both**: Bash for CLI details + WebFetch for conceptual context |
+
 ## How to Answer
 
-1. Identify which documentation page is most relevant to the user's question
-   from the table above. If the topic spans multiple pages, fetch the most
-   specific one first.
-2. Use WebFetch to retrieve the page content. Craft a targeted prompt that
-   extracts the specific information the user asked about. For example:
-   - Keyboard shortcuts -> fetch keyboard-shortcuts page with a prompt like
-     "List all keyboard shortcuts and their descriptions"
-   - Configuration -> fetch configuration page targeting the specific setting
-   - API usage -> fetch api page with "List available commands with parameters
-     and examples"
-3. Synthesize the fetched content into a clear, direct answer. Do not dump
-   raw fetched content -- extract the relevant parts and present them in a
-   helpful format.
-4. If the fetched page does not contain the answer, try fetching a different
-   relevant page from the table.
-5. For simple questions like "what is cmux?", answer from the overview above
+1. Classify the user's question using the Source Selection table above.
+
+2. For **Bash-first** questions:
+   - Run `cmux -h` to get the full command list, or
+     `cmux <subcommand> --help` for details on a specific subcommand.
+   - The CLI help output is authoritative for syntax, flags, and available
+     subcommands -- it reflects the user's installed version.
+   - If the help output fully answers the question, use it directly.
+   - If the user needs more context (examples, workflows, rationale),
+     supplement by fetching the relevant cmux.com page with WebFetch.
+
+3. For **WebFetch** questions:
+   - Select the most relevant URL from the Documentation URL Reference table.
+   - Use WebFetch with a targeted extraction prompt.
+   - If the first page does not answer, try a different page from the table.
+
+4. For **both-sources** questions:
+   - Start with Bash to get the concrete CLI details.
+   - Then fetch the relevant cmux.com page for conceptual context.
+   - Merge both into a unified answer.
+
+5. For simple questions like "what is cmux?", answer from the Overview above
    without fetching, unless the user asks for more details.
 
 ## Response Format
