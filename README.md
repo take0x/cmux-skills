@@ -6,7 +6,7 @@ Agent Skills for [cmux](https://cmux.com), a native macOS terminal for AI coding
 
 ### cmux — Documentation Lookup
 
-Automatically answers questions about cmux by fetching live documentation from [cmux.com](https://cmux.com). Triggers when you mention cmux features, configuration, keyboard shortcuts, API, etc.
+Automatically answers questions about cmux by combining local CLI help (`cmux -h`) with live documentation from [cmux.com](https://cmux.com). CLI-related questions (subcommands, flags, syntax) use the locally installed `cmux` help output for accuracy, while conceptual topics (configuration, shortcuts, teams) are fetched from cmux.com. Triggers when you mention cmux features, configuration, keyboard shortcuts, API, etc.
 
 ### pane — Pane Reader
 
