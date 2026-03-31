@@ -1,6 +1,6 @@
 # cmux-skills
 
-A collection of Claude Code skills for [cmux](https://cmux.com), a native macOS terminal for AI coding agents.
+Agent Skills for [cmux](https://cmux.com), a native macOS terminal for AI coding agents.
 
 ## Skills
 
@@ -32,6 +32,12 @@ Reads terminal output from other cmux panes. Useful for checking build logs, tes
 - [cmux](https://cmux.com) must be installed and available in your PATH (required for the pane skill).
 
 ## Installation
+
+### Agent Skills
+
+```bash
+npx skills add take0x/cmux-skills
+```
 
 ### Claude Code Plugin
 
