@@ -33,17 +33,8 @@ Reads terminal output from other cmux panes. Useful for checking build logs, tes
 
 ## Installation
 
-### Agent Skills
-
 ```bash
 npx skills add take0x/cmux-skills
-```
-
-### Claude Code Plugin
-
-```bash
-/plugin marketplace add take0x/cmux-skills
-/plugin install cmux-skills@take0x-cmux-skills
 ```
 
 ## Local Development
