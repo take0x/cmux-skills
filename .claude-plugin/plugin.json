@@ -1,0 +1,9 @@
+{
+  "name": "cmux-skills",
+  "description": "Skills for answering questions about cmux, a native macOS terminal for AI coding agents",
+  "author": {
+    "name": "Hidetake Tanaka"
+  },
+  "repository": "https://github.com/take0x/cmux-skills",
+  "license": "MIT"
+}
